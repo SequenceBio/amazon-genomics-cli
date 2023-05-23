@@ -3,7 +3,7 @@ PACKAGES := $(shell ls -d ${PWD}/packages/*/ | grep -v -E "(vendor|api|engines)"
 
 .PHONY: test build build-cli release release-cli release-cdk $(PACKAGES)
 
-all: format test build
+all: format build
 
 format:
 	target=format $(MAKE) $(PACKAGES)
