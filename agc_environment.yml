@@ -1,0 +1,11 @@
+name: agc
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - git
+  - make
+  - go
+  - go-cgo
+  - nodejs
+  - python >=3.9,<3.10
