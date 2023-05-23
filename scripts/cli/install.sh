@@ -2,7 +2,12 @@
 
 set -eo pipefail
 
-USER_BIN_DIR="$HOME/bin"
+USER_BIN_DIR=""
+if [ ! -z "$CONDA_PREFIX" ]; then
+    USER_BIN_DIR="${CONDA_PREFIX}/bin"
+else
+    USER_BIN_DIR="$HOME/bin"
+fi
 BASE_DIR="$HOME/.agc"
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
@@ -45,9 +50,13 @@ install_cli () {
     mkdir -p "$USER_BIN_DIR"
     cp "$SCRIPT_DIR/$cliFile" "$USER_BIN_DIR/agc"
 
-    echo "Please modify your \$PATH variable to include \$HOME/bin directory"
-    echo "This can be achieved by running: \"export PATH=\$HOME/bin:\$PATH\""
-    echo "Please append the command above to shell profile to have agc available within every shell instance." 
+    if [ -z "$CONDA_PREFIX" ]; then
+        echo "Please modify your \$PATH variable to include \$HOME/bin directory"
+        echo "This can be achieved by running: \"export PATH=\$HOME/bin:\$PATH\""
+        echo "Please append the command above to shell profile to have agc available within every shell instance."
+    else
+        echo "AGC has been installed in the conda environment at ${CONDA_PREFIX}."
+    fi
 }
 
 install_cdk () {
@@ -61,4 +70,9 @@ install_wes () {
     cp "$SCRIPT_DIR/wes/wes_adapter.zip" "$BASE_DIR/wes"
 }
 
-install_cli && install_cdk && install_wes && echo "Installation complete. Once \$PATH variable has been adjusted, run 'agc --help' to get started!"
+install_cli && install_cdk && install_wes && echo "Installation complete."
+if [ -z "$CONDA_PREFIX" ] ; then
+    echo "Once \$PATH variable has been adjusted, run 'agc --help' to get started!"
+else
+    echo "Run 'agc --help' to get started!"
+fi
