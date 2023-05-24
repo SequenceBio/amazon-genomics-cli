@@ -7,6 +7,32 @@
 The Amazon Genomics CLI is a tool to simplify the processes of deploying the AWS infrastructure required to
 run genomics workflows in the cloud, to submit those workflows to run, and to monitor the logs and outputs of those workflows.
 
+## Sequence Bio Internal Installation
+
+Clone this repository and navigate into it:
+```bash
+git clone https://github.com/SequenceBio/amazon-genomics-cli.git
+cd amazon-genomics-cli/
+```
+
+Create and activate an agc environment:
+```bash
+mamba env create -f agc_environment.yml
+conda activate agc
+```
+
+Build AGC:
+```bash
+make init
+make
+make release
+```
+
+Install AGC:
+```bash
+bash dist/amazon-genomics-cli/install.sh
+```
+
 ## Quick Start
 
 To get an introduction to Amazon Genomics CLI refer to the [Quick Start Guide](https://aws.github.io/amazon-genomics-cli/docs/getting-started/)
