@@ -11,7 +11,7 @@ run genomics workflows in the cloud, to submit those workflows to run, and to mo
 
 Clone this repository and navigate into it:
 ```bash
-git clone --branch ss-explore https://github.com/SequenceBio/amazon-genomics-cli.git
+git clone https://github.com/SequenceBio/amazon-genomics-cli.git
 cd amazon-genomics-cli/
 ```
 
