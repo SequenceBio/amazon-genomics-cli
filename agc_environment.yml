@@ -9,3 +9,4 @@ dependencies:
   - go-cgo
   - nodejs
   - python >=3.9,<3.10
+  - jq
